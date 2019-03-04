@@ -9,7 +9,8 @@ class App extends Component {
             { name: 'Mary', age: 7 },
             { name: 'Riley', age: 59 }
         ],
-        otherState: 'Other values'
+        otherState: 'Other values',
+        showPersons: false
     }
 
     switchNameHandler = (newName) => {
@@ -34,6 +35,13 @@ class App extends Component {
         })
     }
 
+    togglerPersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({
+            showPersons: !doesShow
+        });
+    }
+
     render() {
         const style = {
             backgroundColor: 'white',
@@ -43,24 +51,28 @@ class App extends Component {
             cursor: 'pointer'
         };
 
+        let persons = null;
+
+        if (this.state.showPersons) {
+            persons = (
+                <div>
+                    {this.state.persons.map(person => {
+                        return <Person
+                            name={person.name}
+                            age={person.age} />
+                    })}
+                </div>
+            );
+        }
+
       return (
         <div className="App">
             <h1>Hi, I'm a React App</h1>
 
             <button
                 style={style}
-                onClick={() => this.switchNameHandler('Robert')}>Switch name</button>
-            <Person
-                name={this.state.people[0].name}
-                age={this.state.people[0].age}/>
-            <Person
-                name={this.state.people[1].name}
-                age={this.state.people[1].age}
-                click={this.switchNameHandler.bind(this, 'Bill')}
-                changed={this.nameChangedHandler} > My hobbies: eating chicken</Person>
-            <Person
-                name={this.state.people[2].name}
-                age={this.state.people[2].age}/>
+                onClick={this.togglerPersonsHandler}>Toggle Persons</button>
+            {persons}
         </div>
     );
     // return React.createElement('div', null, 'h1', 'Hi, I\'m a React App!!!');
