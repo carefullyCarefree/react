@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+}
+
+button {
+    min-height: 2rem;
+    font-size: 1.5rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.calc-body {
+    max-width: 20rem;
+    grid-gap: 1rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+
+.display {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    background-color: black;
+    padding: 1.5rem;
+    color: white;
+
+    text-align: right;
+    font-size: 2rem;
+}
+
+.equal {
+    grid-row-start: 3;
+    grid-row-end: 6;
+    grid-column-start: 4;
+}
